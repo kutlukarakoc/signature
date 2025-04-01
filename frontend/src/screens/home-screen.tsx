@@ -48,7 +48,7 @@ export function HomeScreen() {
       if (selectedStyle) {
         // If style is selected, append the style description
         const styleDescription = SignatureStyleDescriptions[selectedStyle];
-        fullPrompt = `AISIGNATURE handwritten signature saying ${prompt} ${styleDescription}`;
+        fullPrompt = `AISIGNATURE handwritten signature saying ${prompt}, ${styleDescription}`;
       } else {
         // If no style is selected, just the basic prompt
         fullPrompt = `AISIGNATURE handwritten signature saying ${prompt}`;
