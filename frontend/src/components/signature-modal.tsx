@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
@@ -8,13 +8,12 @@ import {
   Image,
   Alert,
   Share,
-  Dimensions,
-} from 'react-native';
-import * as FileSystem from 'expo-file-system';
-import * as MediaLibrary from 'expo-media-library';
-import { Feather } from '@expo/vector-icons';
-import { Signature } from '../types';
-import { ThemeColors } from '../utils/config';
+} from "react-native";
+import * as FileSystem from "expo-file-system";
+import * as MediaLibrary from "expo-media-library";
+import { Feather } from "@expo/vector-icons";
+import { Signature } from "../types";
+import { ThemeColors } from "../utils/config";
 
 interface SignatureModalProps {
   visible: boolean;
@@ -22,21 +21,29 @@ interface SignatureModalProps {
   signature: Signature | null;
 }
 
-export function SignatureModal({ visible, signature, onClose }: SignatureModalProps) {
+export function SignatureModal({
+  visible,
+  signature,
+  onClose,
+}: SignatureModalProps) {
   if (!signature) return null;
 
   const downloadSignature = async () => {
     try {
       // Request permission
       const { status } = await MediaLibrary.requestPermissionsAsync();
-      
-      if (status !== 'granted') {
-        Alert.alert('Permission denied', 'Unable to save signature without gallery permission.');
+
+      if (status !== "granted") {
+        Alert.alert(
+          "Permission denied",
+          "Unable to save signature without gallery permission."
+        );
         return;
       }
 
       // Create a file name
-      const fileUri = FileSystem.cacheDirectory + `signature-${signature.id}.png`;
+      const fileUri =
+        FileSystem.cacheDirectory + `signature-${signature.id}.png`;
 
       // Download the image
       const { uri } = await FileSystem.downloadAsync(
@@ -46,18 +53,19 @@ export function SignatureModal({ visible, signature, onClose }: SignatureModalPr
 
       // Save to media library
       await MediaLibrary.saveToLibraryAsync(uri);
-      
-      Alert.alert('Success!', 'Signature saved to your gallery');
+
+      Alert.alert("Success!", "Signature saved to your gallery");
     } catch (error) {
-      console.error('Error saving signature to gallery:', error);
-      Alert.alert('Error', 'An error occurred while saving the signature');
+      console.error("Error saving signature to gallery:", error);
+      Alert.alert("Error", "An error occurred while saving the signature");
     }
   };
 
   const shareSignature = async () => {
     try {
       // Create a file in cache
-      const fileUri = FileSystem.cacheDirectory + `signature-${signature.id}.png`;
+      const fileUri =
+        FileSystem.cacheDirectory + `signature-${signature.id}.png`;
 
       // Download the image
       const { uri } = await FileSystem.downloadAsync(
@@ -68,12 +76,12 @@ export function SignatureModal({ visible, signature, onClose }: SignatureModalPr
       // Share the image
       await Share.share({
         url: uri,
-        message: 'Check out this signature I created with AI!',
-        title: 'AI Generated Signature',
+        message: "Check out this signature I created with AI!",
+        title: "AI Generated Signature",
       });
     } catch (error) {
-      console.error('Error sharing signature:', error);
-      Alert.alert('Error', 'An error occurred while sharing the signature');
+      console.error("Error sharing signature:", error);
+      Alert.alert("Error", "An error occurred while sharing the signature");
     }
   };
 
@@ -91,34 +99,40 @@ export function SignatureModal({ visible, signature, onClose }: SignatureModalPr
           </TouchableOpacity>
 
           <Text style={styles.title}>Your Signature is Ready!</Text>
-          
+
           <Text style={styles.subtitle}>Beautiful, unique, and all yours.</Text>
-          
+
           <View style={styles.signatureContainer}>
-            <Image 
-              source={{ uri: signature.imageUrl }} 
+            <Image
+              source={{ uri: signature.imageUrl }}
               style={styles.signatureImage}
               resizeMode="contain"
             />
           </View>
-          
+
           <Text style={styles.prompt}>{signature.prompt}</Text>
-          
+
           <View style={styles.actionButtons}>
             <TouchableOpacity style={styles.button} onPress={downloadSignature}>
-              <Feather name="download" size={18} color={ThemeColors.primaryText} style={styles.buttonIcon} />
+              <Feather
+                name="download"
+                size={18}
+                color={ThemeColors.primaryText}
+                style={styles.buttonIcon}
+              />
               <Text style={styles.buttonText}>Save</Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity style={styles.button} onPress={shareSignature}>
-              <Feather name="share-2" size={18} color={ThemeColors.primaryText} style={styles.buttonIcon} />
+              <Feather
+                name="share-2"
+                size={18}
+                color={ThemeColors.primaryText}
+                style={styles.buttonIcon}
+              />
               <Text style={styles.buttonText}>Share</Text>
             </TouchableOpacity>
           </View>
-          
-          <TouchableOpacity style={styles.createNewButton} onPress={onClose}>
-            <Text style={styles.createNewText}>Create Another Signature</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </Modal>
@@ -128,18 +142,18 @@ export function SignatureModal({ visible, signature, onClose }: SignatureModalPr
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: ThemeColors.modalBackground,
   },
   modalContent: {
-    width: '90%',
+    width: "90%",
     maxWidth: 400,
     backgroundColor: ThemeColors.surface,
     borderRadius: 16,
     padding: 20,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -149,74 +163,65 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 15,
     right: 15,
     zIndex: 1,
   },
   title: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginTop: 10,
     color: ThemeColors.primaryText,
-    textAlign: 'center',
+    textAlign: "center",
   },
   subtitle: {
     fontSize: 16,
     color: ThemeColors.secondaryText,
     marginVertical: 10,
-    textAlign: 'center',
+    textAlign: "center",
   },
   signatureContainer: {
-    width: '100%',
+    width: "100%",
     height: 220,
     marginVertical: 20,
     borderRadius: 12,
-    overflow: 'hidden',
+    overflow: "hidden",
     backgroundColor: ThemeColors.card,
   },
   signatureImage: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   prompt: {
     fontSize: 14,
     color: ThemeColors.secondaryText,
     marginBottom: 20,
-    textAlign: 'center',
+    textAlign: "center",
     paddingHorizontal: 10,
   },
   actionButtons: {
-    flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'space-evenly',
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-evenly",
     marginBottom: 15,
   },
   button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: ThemeColors.primary,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
-    width: '45%',
+    width: "45%",
   },
   buttonText: {
     color: ThemeColors.primaryText,
-    fontWeight: '600',
+    fontWeight: "600",
     fontSize: 16,
   },
   buttonIcon: {
     marginRight: 8,
-  },
-  createNewButton: {
-    marginTop: 10,
-    paddingVertical: 12,
-  },
-  createNewText: {
-    color: ThemeColors.accent,
-    fontSize: 16,
-    fontWeight: '600',
   },
 });
