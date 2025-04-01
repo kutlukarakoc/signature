@@ -48,10 +48,10 @@ export function HomeScreen() {
       if (selectedStyle) {
         // If style is selected, append the style description
         const styleDescription = SignatureStyleDescriptions[selectedStyle];
-        fullPrompt = `AISIGNATURE ${prompt} ${styleDescription}`;
+        fullPrompt = `AISIGNATURE handwritten signature saying ${prompt} ${styleDescription}`;
       } else {
         // If no style is selected, just the basic prompt
-        fullPrompt = `AISIGNATURE ${prompt}`;
+        fullPrompt = `AISIGNATURE handwritten signature saying ${prompt}`;
       }
       
       const signatureUrl = await generateSignature(fullPrompt);
