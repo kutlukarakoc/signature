@@ -13,6 +13,7 @@ import { Feather } from "@expo/vector-icons";
 import * as FileSystem from "expo-file-system";
 import * as MediaLibrary from "expo-media-library";
 import { Signature } from "../types";
+import { ThemeColors } from "../utils/config";
 
 interface SignatureCardProps {
   signature: Signature;
@@ -102,10 +103,10 @@ export function SignatureCard({ signature }: SignatureCardProps) {
           style={styles.actionButton}
           onPress={downloadSignature}
         >
-          <Feather name="download" size={20} color="#555" />
+          <Feather name="download" size={20} color={ThemeColors.primaryText} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton} onPress={shareSignature}>
-          <Feather name="share" size={20} color="#555" />
+          <Feather name="share" size={20} color={ThemeColors.primaryText} />
         </TouchableOpacity>
       </View>
     </View>
@@ -117,14 +118,14 @@ const cardWidth = width * 0.9;
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: ThemeColors.card,
     borderRadius: 12,
     padding: 12,
     marginVertical: 8,
     marginHorizontal: 16,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 3,
     width: cardWidth,
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 200,
     borderRadius: 8,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: ThemeColors.surface,
   },
   infoContainer: {
     marginTop: 12,
@@ -143,11 +144,11 @@ const styles = StyleSheet.create({
   prompt: {
     fontSize: 16,
     fontWeight: "500",
-    color: "#333",
+    color: ThemeColors.primaryText,
   },
   date: {
     fontSize: 14,
-    color: "#666",
+    color: ThemeColors.secondaryText,
     marginTop: 4,
   },
   actions: {
@@ -162,6 +163,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 20,
     marginLeft: 8,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: ThemeColors.surface,
   },
 });

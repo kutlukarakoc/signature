@@ -9,6 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { SignatureStyle, SignatureStyleDescriptions } from '../types';
+import { ThemeColors } from '../utils/config';
 
 interface StyleOption {
   id: SignatureStyle;
@@ -70,7 +71,7 @@ export function StyleSelector({ selectedStyle, onSelectStyle }: StyleSelectorPro
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Choose a Signature Style</Text>
+      <Text style={styles.title}>Choose a Style</Text>
       
       <FlatList
         data={styleOptions}
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 12,
     paddingHorizontal: 16,
-    color: '#333',
+    color: ThemeColors.primaryText,
   },
   styleList: {
     paddingHorizontal: 12,
@@ -113,12 +114,12 @@ const styles = StyleSheet.create({
     width: 80,
     padding: 8,
     borderRadius: 12,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: ThemeColors.card,
   },
   selectedStyle: {
-    backgroundColor: '#e0e7ff',
+    backgroundColor: ThemeColors.surface,
     borderWidth: 2,
-    borderColor: '#4a6ee0',
+    borderColor: ThemeColors.primary,
   },
   styleImage: {
     width: 60,
@@ -130,23 +131,23 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
     textAlign: 'center',
-    color: '#555',
+    color: ThemeColors.secondaryText,
   },
   selectedText: {
-    color: '#4a6ee0',
+    color: ThemeColors.accent,
     fontWeight: '600',
   },
   descriptionContainer: {
     marginTop: 16,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: ThemeColors.surface,
     borderRadius: 8,
     marginHorizontal: 16,
   },
   descriptionText: {
     fontSize: 14,
-    color: '#555',
+    color: ThemeColors.secondaryText,
     lineHeight: 20,
   },
 }); 

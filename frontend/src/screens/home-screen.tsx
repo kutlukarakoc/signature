@@ -18,6 +18,7 @@ import { SignatureModal } from '../components/signature-modal';
 import { saveSignatureToStorage } from '../utils/storage';
 import { Signature, SignatureStyle, SignatureStyleDescriptions } from '../types';
 import { LinearGradient } from 'expo-linear-gradient';
+import { ThemeColors } from '../utils/config';
 
 export function HomeScreen() {
   const [prompt, setPrompt] = useState('');
@@ -96,10 +97,11 @@ export function HomeScreen() {
           <Text style={styles.subtitle}>Create beautiful AI-powered signatures</Text>
           
           <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Your Name</Text>
+            <Text style={styles.inputLabel}>Your Signature Text</Text>
             <TextInput
               style={styles.input}
-              placeholder="Enter your name or the name for the signature"
+              placeholder="Enter your signature text"
+              placeholderTextColor={ThemeColors.inputPlaceholder}
               value={prompt}
               onChangeText={handlePromptChange}
               multiline
@@ -121,7 +123,7 @@ export function HomeScreen() {
             style={styles.generateButtonContainer}
           >
             <LinearGradient
-              colors={['#4299e1', '#805ad5']}
+              colors={[ThemeColors.primary, ThemeColors.secondary]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={[
@@ -155,7 +157,7 @@ export function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: ThemeColors.background,
   },
   keyboardAvoidingView: {
     flex: 1,
@@ -167,13 +169,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#1a1a1a',
+    color: ThemeColors.primaryText,
     marginBottom: 8,
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: ThemeColors.secondaryText,
     marginBottom: 32,
     textAlign: 'center',
   },
@@ -184,11 +186,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 12,
-    color: '#333',
+    color: ThemeColors.primaryText,
   },
   input: {
     fontSize: 16,
-    backgroundColor: '#f0f2f5',
+    backgroundColor: ThemeColors.input,
+    color: ThemeColors.inputText,
     borderRadius: 8,
     padding: 12,
     minHeight: 60,
@@ -196,7 +199,7 @@ const styles = StyleSheet.create({
   },
   characterCounter: {
     fontSize: 14,
-    color: '#888',
+    color: ThemeColors.secondaryText,
     textAlign: 'right',
     marginTop: 4,
     paddingRight: 8,
@@ -206,7 +209,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
+    shadowOpacity: 0.3,
     shadowRadius: 12,
     elevation: 7,
   },
@@ -221,13 +224,13 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   generateButtonText: {
-    color: '#fff',
+    color: ThemeColors.primaryText,
     fontSize: 20,
     fontWeight: '600',
     letterSpacing: 0.5,
   },
   errorText: {
-    color: '#e74c3c',
+    color: ThemeColors.error,
     marginBottom: 16,
     textAlign: 'center',
   },
@@ -238,6 +241,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     marginBottom: 12,
-    color: '#333',
+    color: ThemeColors.primaryText,
   },
 }); 

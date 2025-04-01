@@ -12,6 +12,8 @@ import { useSignatureContext } from '../contexts/SignatureContext';
 import { SignatureCard } from '../components/signature-card';
 import { clearSignaturesFromStorage } from '../utils/storage';
 import { Signature } from '../types';
+import { ThemeColors } from '../utils/config';
+import { Feather } from '@expo/vector-icons';
 
 export function HistoryScreen() {
   const { state, dispatch } = useSignatureContext();
@@ -48,6 +50,7 @@ export function HistoryScreen() {
 
   const renderEmptyList = () => (
     <View style={styles.emptyContainer}>
+      <Feather name="file" size={70} color={ThemeColors.disabledText} />
       <Text style={styles.emptyText}>No signatures yet</Text>
       <Text style={styles.emptySubtext}>
         Go to the Home tab to create your first signature
@@ -64,7 +67,7 @@ export function HistoryScreen() {
             style={styles.clearButton}
             onPress={handleClearHistory}
           >
-            <Text style={styles.clearButtonText}>Clear All</Text>
+            <Feather name="trash-2" size={22} color={ThemeColors.error} />
           </TouchableOpacity>
         )}
       </View>
@@ -83,7 +86,7 @@ export function HistoryScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: ThemeColors.background,
   },
   header: {
     flexDirection: 'row',
@@ -92,19 +95,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: ThemeColors.border,
+    backgroundColor: ThemeColors.surface,
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#333',
+    color: ThemeColors.primaryText,
   },
   clearButton: {
     padding: 8,
-  },
-  clearButtonText: {
-    color: '#e74c3c',
-    fontWeight: '600',
   },
   listContainer: {
     padding: 20,
@@ -120,12 +120,12 @@ const styles = StyleSheet.create({
   emptyText: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#666',
+    color: ThemeColors.secondaryText,
     marginBottom: 8,
   },
   emptySubtext: {
     fontSize: 14,
-    color: '#999',
+    color: ThemeColors.disabledText,
     textAlign: 'center',
     paddingHorizontal: 40,
   },

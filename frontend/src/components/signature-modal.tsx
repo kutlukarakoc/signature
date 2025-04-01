@@ -8,11 +8,13 @@ import {
   Image,
   Alert,
   Share,
+  Dimensions,
 } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
 import { Feather } from '@expo/vector-icons';
 import { Signature } from '../types';
+import { ThemeColors } from '../utils/config';
 
 interface SignatureModalProps {
   visible: boolean;
@@ -85,7 +87,7 @@ export function SignatureModal({ visible, signature, onClose }: SignatureModalPr
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Feather name="x" size={24} color="#333" />
+            <Feather name="x" size={24} color={ThemeColors.primaryText} />
           </TouchableOpacity>
 
           <Text style={styles.title}>Your Signature is Ready!</Text>
@@ -104,12 +106,12 @@ export function SignatureModal({ visible, signature, onClose }: SignatureModalPr
           
           <View style={styles.actionButtons}>
             <TouchableOpacity style={styles.button} onPress={downloadSignature}>
-              <Feather name="download" size={18} color="#fff" style={styles.buttonIcon} />
+              <Feather name="download" size={18} color={ThemeColors.primaryText} style={styles.buttonIcon} />
               <Text style={styles.buttonText}>Save</Text>
             </TouchableOpacity>
             
             <TouchableOpacity style={styles.button} onPress={shareSignature}>
-              <Feather name="share-2" size={18} color="#fff" style={styles.buttonIcon} />
+              <Feather name="share-2" size={18} color={ThemeColors.primaryText} style={styles.buttonIcon} />
               <Text style={styles.buttonText}>Share</Text>
             </TouchableOpacity>
           </View>
@@ -128,12 +130,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: ThemeColors.modalBackground,
   },
   modalContent: {
     width: '90%',
     maxWidth: 400,
-    backgroundColor: 'white',
+    backgroundColor: ThemeColors.surface,
     borderRadius: 16,
     padding: 20,
     alignItems: 'center',
@@ -142,9 +144,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 6,
   },
   closeButton: {
     position: 'absolute',
@@ -156,12 +158,12 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     marginTop: 10,
-    color: '#333',
+    color: ThemeColors.primaryText,
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: ThemeColors.secondaryText,
     marginVertical: 10,
     textAlign: 'center',
   },
@@ -171,7 +173,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     borderRadius: 12,
     overflow: 'hidden',
-    backgroundColor: '#f9f9f9',
+    backgroundColor: ThemeColors.card,
   },
   signatureImage: {
     width: '100%',
@@ -179,7 +181,7 @@ const styles = StyleSheet.create({
   },
   prompt: {
     fontSize: 14,
-    color: '#666',
+    color: ThemeColors.secondaryText,
     marginBottom: 20,
     textAlign: 'center',
     paddingHorizontal: 10,
@@ -194,14 +196,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#4a6ee0',
+    backgroundColor: ThemeColors.primary,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
     width: '45%',
   },
   buttonText: {
-    color: 'white',
+    color: ThemeColors.primaryText,
     fontWeight: '600',
     fontSize: 16,
   },
@@ -213,7 +215,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   createNewText: {
-    color: '#4a6ee0',
+    color: ThemeColors.accent,
     fontSize: 16,
     fontWeight: '600',
   },

@@ -11,6 +11,7 @@ import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import { getSignaturesFromStorage } from "../utils/storage";
 import { useSignatureContext } from "../contexts/SignatureContext";
+import { ThemeColors } from "../utils/config";
 
 export function SplashScreen({ onFinish }: { onFinish: () => void }) {
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -72,7 +73,7 @@ export function SplashScreen({ onFinish }: { onFinish: () => void }) {
     <SafeAreaView style={styles.container}>
       <StatusBar style="light" />
       <LinearGradient
-        colors={["#4a6ee0", "#7467ef"]}
+        colors={[ThemeColors.primary, ThemeColors.accent]}
         style={styles.background}
       >
         <View style={styles.content}>
@@ -133,13 +134,13 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    backgroundColor: ThemeColors.card,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 30,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.4,
     shadowRadius: 8,
     elevation: 10,
   },
@@ -149,12 +150,12 @@ const styles = StyleSheet.create({
   signatureText: {
     fontSize: 32,
     fontWeight: "700",
-    color: "white",
+    color: ThemeColors.primaryText,
     marginBottom: 12,
   },
   tagline: {
     fontSize: 18,
-    color: "rgba(255, 255, 255, 0.9)",
+    color: ThemeColors.primaryText,
     textAlign: "center",
     paddingHorizontal: 40,
   },
