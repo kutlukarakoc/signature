@@ -6,6 +6,7 @@ import {
   Animated,
   Easing,
   SafeAreaView,
+  Image,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
@@ -86,7 +87,10 @@ export function SplashScreen({ onFinish }: { onFinish: () => void }) {
               },
             ]}
           >
-            <Text style={styles.iconText}>✒️</Text>
+            <Image
+              source={require("../../assets/icon.png")}
+              style={styles.icon}
+            />
           </Animated.View>
 
           <Animated.Text
@@ -143,6 +147,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 8,
     elevation: 10,
+  },
+  icon: {
+    width: "100%",
+    height: "100%",
+    borderRadius: '100%'
   },
   iconText: {
     fontSize: 60,
