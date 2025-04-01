@@ -70,7 +70,7 @@ export function StyleSelector({ selectedStyle, onSelectStyle }: StyleSelectorPro
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Choose a Style</Text>
+      <Text style={styles.title}>Choose a Signature Style</Text>
       
       <FlatList
         data={styleOptions}
