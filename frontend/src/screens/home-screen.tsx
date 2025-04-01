@@ -30,6 +30,10 @@ export function HomeScreen() {
     setSelectedStyle(style);
   };
 
+  const handlePromptChange = (text: string) => {
+    setPrompt(text);
+  };
+
   const handleGenerateSignature = async () => {
     if (!prompt.trim()) {
       Alert.alert('Error', 'Please enter a name');
@@ -97,11 +101,12 @@ export function HomeScreen() {
               style={styles.input}
               placeholder="Enter your name or the name for the signature"
               value={prompt}
-              onChangeText={setPrompt}
+              onChangeText={handlePromptChange}
               multiline
-              numberOfLines={2}
-              maxLength={100}
+              numberOfLines={1}
+              maxLength={30}
             />
+            <Text style={styles.characterCounter}>{prompt.length}/30</Text>
           </View>
           
           <StyleSelector 
@@ -186,8 +191,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f2f5',
     borderRadius: 8,
     padding: 12,
-    minHeight: 80,
+    minHeight: 60,
     textAlignVertical: 'top',
+  },
+  characterCounter: {
+    fontSize: 14,
+    color: '#888',
+    textAlign: 'right',
+    marginTop: 4,
+    paddingRight: 8,
   },
   generateButtonContainer: {
     marginTop: 30,
