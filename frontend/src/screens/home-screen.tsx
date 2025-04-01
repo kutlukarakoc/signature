@@ -37,7 +37,7 @@ export function HomeScreen() {
 
   const handleGenerateSignature = async () => {
     if (!prompt.trim()) {
-      Alert.alert('Error', 'Please enter a name');
+      Alert.alert('Error', 'Please enter a signature text');
       return;
     }
 
