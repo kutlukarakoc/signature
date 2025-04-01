@@ -70,5 +70,6 @@ export interface AppState {
 export type AppAction = 
   | { type: 'ADD_SIGNATURE'; payload: Signature }
   | { type: 'SET_SIGNATURES'; payload: Signature[] }
+  | { type: 'REMOVE_SIGNATURE'; payload: string }
   | { type: 'SET_LOADING'; payload: boolean }
   | { type: 'SET_ERROR'; payload: string | null }; 

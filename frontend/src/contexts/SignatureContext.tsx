@@ -21,6 +21,11 @@ function appReducer(state: AppState, action: AppAction): AppState {
         ...state,
         signatures: action.payload,
       };
+    case 'REMOVE_SIGNATURE':
+      return {
+        ...state,
+        signatures: state.signatures.filter(sig => sig.id !== action.payload),
+      };
     case 'SET_LOADING':
       return {
         ...state,

@@ -14,12 +14,16 @@ import * as FileSystem from "expo-file-system";
 import * as MediaLibrary from "expo-media-library";
 import { Signature } from "../types";
 import { ThemeColors } from "../utils/config";
+import { useSignatureContext } from "../contexts/SignatureContext";
+import { removeSignatureFromStorage } from "../utils/storage";
 
 interface SignatureCardProps {
   signature: Signature;
 }
 
 export function SignatureCard({ signature }: SignatureCardProps) {
+  const { dispatch } = useSignatureContext();
+  
   const downloadSignature = async () => {
     try {
       // Request permissions
@@ -75,6 +79,38 @@ export function SignatureCard({ signature }: SignatureCardProps) {
       Alert.alert("Error", "An error occurred while sharing the signature");
     }
   };
+  
+  const deleteSignature = async () => {
+    Alert.alert(
+      "Delete Signature",
+      "Are you sure you want to delete this signature?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: async () => {
+            try {
+              // Remove from storage
+              await removeSignatureFromStorage(signature.id);
+              
+              // Remove from context
+              dispatch({ 
+                type: "REMOVE_SIGNATURE", 
+                payload: signature.id 
+              });
+            } catch (error) {
+              console.error("Error deleting signature:", error);
+              Alert.alert("Error", "Failed to delete signature");
+            }
+          }
+        }
+      ]
+    );
+  };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -99,6 +135,12 @@ export function SignatureCard({ signature }: SignatureCardProps) {
         <Text style={styles.date}>{formatDate(signature.createdAt)}</Text>
       </View>
       <View style={styles.actions}>
+        <TouchableOpacity
+          style={[styles.actionButton, styles.deleteButton]}
+          onPress={deleteSignature}
+        >
+          <Feather name="trash-2" size={20} color={ThemeColors.error} />
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.actionButton}
           onPress={downloadSignature}
@@ -163,6 +205,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 20,
     marginLeft: 8,
+    backgroundColor: ThemeColors.surface,
+  },
+  deleteButton: {
     backgroundColor: ThemeColors.surface,
   },
 });
