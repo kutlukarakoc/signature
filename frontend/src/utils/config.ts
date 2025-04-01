@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'https://signature-production-3663.up.railway.app//api';
+export const API_BASE_URL = 'https://signature-production-3663.up.railway.app/api';
 
 export const ENDPOINTS = {
   GENERATE_SIGNATURE: `${API_BASE_URL}/signature/generate`,
