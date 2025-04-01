@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Signature Generator",
+    "slug": "frontend",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#6c5ce7",
+      "image": "./assets/icon.png",
+      "resizeMode": "contain"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.signature-generator.app",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSPhotoLibraryAddUsageDescription": "Signature Generator needs permission to save signatures to your gallery.",
+        "NSPhotoLibraryUsageDescription": "Signature Generator needs permission to save signatures to your gallery.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "plugins": [
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Signature Generator needs permission to save signatures to your gallery.",
+          "savePhotosPermission": "Signature Generator needs permission to save signatures to your gallery.",
+          "isAccessMediaLocationEnabled": true
+        }
+      ]
+    ]
+  }
+}
