@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { HomeScreen } from '../screens/home-screen';
 import { HistoryScreen } from '../screens/history-screen';
+import { ThemeColors } from '../utils/config';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -13,15 +14,15 @@ function MainTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: '#3498db',
-        tabBarInactiveTintColor: '#95a5a6',
+        tabBarActiveTintColor: ThemeColors.accent,
+        tabBarInactiveTintColor: ThemeColors.disabledText,
         tabBarLabelStyle: {
           fontSize: 12,
           fontWeight: '500',
         },
         tabBarStyle: {
-          backgroundColor: '#fff',
-          borderTopColor: '#ecf0f1',
+          backgroundColor: ThemeColors.surface,
+          borderTopColor: ThemeColors.border,
           paddingTop: 8,
         },
         headerShown: false,
@@ -53,7 +54,37 @@ function MainTabs() {
 
 export function AppNavigator() {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      theme={{
+        dark: true,
+        colors: {
+          primary: ThemeColors.primary,
+          background: ThemeColors.background,
+          card: ThemeColors.surface,
+          text: ThemeColors.primaryText,
+          border: ThemeColors.border,
+          notification: ThemeColors.accent,
+        },
+        fonts: {
+          regular: {
+            fontFamily: 'System',
+            fontWeight: 'normal',
+          },
+          medium: {
+            fontFamily: 'System',
+            fontWeight: '500',
+          },
+          bold: {
+            fontFamily: 'System',
+            fontWeight: 'bold',
+          },
+          heavy: {
+            fontFamily: 'System',
+            fontWeight: '900',
+          }
+        }
+      }}
+    >
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
